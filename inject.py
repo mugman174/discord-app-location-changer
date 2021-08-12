@@ -40,7 +40,7 @@ Fosscord Injector v0.0.1 by mugman
 
 end_url = input("Enter your Fosscord instance IP (e.x. '127.0.0.1:3001', 'myvps.com:3001', or 'app.fosscord.com'): ")
 https = input("Does the instance support HTTPS? (Does it have a valid HTTP cert?) [yes,no]: ")
-https = 'https' if https else 'http'
+https = 'https' if (https == "yes") else 'http'
 print("1 - Discord Stable\n2 - Discord PTB\n3 - Discord Canary\n4. Discord Development")
 ver_in = int(input("Choose your version [1,2,3,4]: "))
 
