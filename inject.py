@@ -1,7 +1,7 @@
 """
     The Fosscord Injector injects json into a Discord client's settings file,
     so it may connect to a Fosscord instance.
-    Copyright (C) 2021  mugman174
+    Copyright (C) 2021 mugman174
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
