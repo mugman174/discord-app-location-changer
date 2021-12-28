@@ -1,46 +1,54 @@
 """
-    The Fosscord Injector injects json into a Discord client's settings file,
-    so it may connect to a Fosscord instance.
-    Copyright (C) 2021 mugman174
+	The Fosscord Injector injects json into a Discord client's settings file,
+	so it may connect to a Fosscord instance.
+	Copyright (C) 2021 mugman174
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import sys, os, json
+import sys
+import os
+import json
 
 
-try:
-	DRY_RUN = bool(os.environ["DRY_RUN"])
-except KeyError:
-	DRY_RUN = False
+DRY_RUN = bool(os.environ.get("DRY_RUN", False))
+ENDPOINT_URL = os.environ.get("FOSSCORD_ENDPOINT", None)
+HTTPS_SUPPORT = os.environ.get("FOSSCORD_HTTPS", None)
+API_VERSION = os.environ.get("FOSSCORD_API_VER", "v9")
 
-print(f"""
- _____                               _
-|  ___|__  ___ ___  ___ ___  _ __ __| |
+print(
+	f"""
+ _____								 _
+|  ___|__  ___ ___	___ ___	 _ __ __| |
 | |_ / _ \/ __/ __|/ __/ _ \| '__/ _` |
 |  _| (_) \__ \__ \ (_| (_) | | | (_| |
-|_|  \___/|___/___/\___\___/|_|  \__,_|
+|_|	 \___/|___/___/\___\___/|_|	 \__,_|
 
 Fosscord Injector v0.0.1 by mugman
 
 {"[Dry Run]" if DRY_RUN else ''}
-""")
+"""
+)
 
 
-end_url = input("Enter your Fosscord instance IP (e.x. '127.0.0.1:3001', 'myvps.com:3001', or 'app.fosscord.com'): ")
-https = input("Does the instance support HTTPS? (Does it have a valid HTTP cert?) [yes,no]: ")
-https = 'https' if (https == "yes") else 'http'
+end_url = ENDPOINT_URL or input(
+	"Enter your Fosscord instance IP (e.x. '127.0.0.1:3001', 'myvps.com:3001', or 'app.fosscord.com'): "
+)
+https = HTTPS_SUPPORT or input(
+	"Does the instance support HTTPS? (Does it have a valid HTTP cert?) [yes,no]: "
+)
+https = "https" if (https == "yes") else "http"
 print("1 - Discord Stable\n2 - Discord PTB\n3 - Discord Canary\n4. Discord Development")
 ver_in = int(input("Choose your version [1,2,3,4]: "))
 
@@ -68,14 +76,25 @@ else:
 try:
 	os.chdir(confpath)
 except FileNotFoundError:
-	raise FileNotFoundError("The Discord version you have inputted is invalid, or your config directory is different from the default. Please report this problem to mugman#5453 on Discord.")
+	raise FileNotFoundError(
+		"The Discord version you have inputted is invalid, or your config directory is different from the default. Please report this problem to mugman#5453 on Discord."
+	)
 
-inject_json = {"API_ENDPOINT": f"{https}://{end_url}/api/v8","WEBAPP_ENDPOINT": f"{https}://{end_url}","UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod","NEW_UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod/"}
+print("Reading from current settings file...")
+with open("settings.json") as settings_file:
+	settings = json.load(settings_file)
+
+inject_json = {
+	"API_ENDPOINT": f"{https}://{end_url}/api/{API_VERSION}",
+	"WEBAPP_ENDPOINT": f"{https}://{end_url}",
+}
+
+settings.update(inject_json)
 
 if not DRY_RUN:
 	print("Writing Files...")
 	with open("settings.json", "w") as settings_file:
-		json.dump(inject_json, settings_file)
+		json.dump(settings, settings_file)
 		print(f"Injected! Please restart your Discord client ({version}), and enjoy!")
 else:
-	print("Dry Run Complete.")
+	print(f"Dry Run Complete. Settings: {settings}")
