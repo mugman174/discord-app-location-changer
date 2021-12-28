@@ -39,4 +39,4 @@ Fosscord Injector v0.0.1 by mugman
 
 # Troubleshooting
 
-Create an issue on this Github repo for any errors. Please redact any personal information if posting logs or errors.
+Create an issue on this Github repo or ping mugman in the Fosscord server for any issues. Please redact any personal information if posting logs or errors.
