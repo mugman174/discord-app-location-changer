@@ -51,7 +51,9 @@ https = HTTPS_SUPPORT or input(
 	"Does the instance support HTTPS? (Does it have a valid HTTP cert?) [yes,no]: "
 )
 https = "https" if (https == "yes") else "http"
-print("1 - Discord Stable\n2 - Discord PTB\n3 - Discord Canary\n4 - Discord Development")
+print(
+	"1 - Discord Stable\n2 - Discord PTB\n3 - Discord Canary\n4 - Discord Development"
+)
 ver_in = int(input("Choose your version [1,2,3,4]: "))
 
 
@@ -89,8 +91,8 @@ with open("settings.json") as settings_file:
 inject_json = {
 	"API_ENDPOINT": f"{https}://{end_url}/api/{API_VERSION}",
 	"WEBAPP_ENDPOINT": f"{https}://{end_url}",
-"UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod",
-"NEW_UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod/",
+	"UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod",
+	"NEW_UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod/",
 }
 
 settings.update(inject_json)
@@ -101,20 +103,24 @@ if not DRY_RUN:
 		json.dump(settings, settings_file)
 
 	version_reg = re.compile("\d\.\d\.[0-9]+")
-	ver_search = version_reg.search(' '.join(os.listdir()))
-	confirm = input("[Confirmation] Fosscord instances do not work with erlpack. Disable erlpack [y/n]? ")
+	ver_search = version_reg.search(" ".join(os.listdir()))
+	confirm = input(
+		"[Confirmation] Fosscord instances do not work with erlpack. Disable erlpack [y/n]? "
+	)
 	if not ver_search or "y" not in confirm:
-		print("You will need to disable erlpack manually from your Discord client for this to work.")
+		print(
+			"You will need to disable erlpack manually from your Discord client for this to work."
+		)
 	else:
 		print("Disabling erlpack...")
 		ver = ver_search[0]
 		dir = os.path.join(ver, "modules/discord_erlpack")
 		os.chdir(dir)
-		manifest_json = {"files":["index.js","manifest.json"]}
+		manifest_json = {"files": ["index.js", "manifest.json"]}
 		with open("manifest.json", "w") as manifest_file:
 			json.dump(manifest_json, manifest_file)
 		with open("index.js", "w") as erlpack:
-			erlpack.write('module.exports = {e.pack: (e) => e}')
+			erlpack.write("module.exports = {e.pack: (e) => e}")
 	print(f"Injected! Please restart your Discord client ({version}), and enjoy!")
 
 else:
