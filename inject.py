@@ -87,6 +87,8 @@ with open("settings.json") as settings_file:
 inject_json = {
 	"API_ENDPOINT": f"{https}://{end_url}/api/{API_VERSION}",
 	"WEBAPP_ENDPOINT": f"{https}://{end_url}",
+"UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod",
+"NEW_UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod/",
 }
 
 settings.update(inject_json)
