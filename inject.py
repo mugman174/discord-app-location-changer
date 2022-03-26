@@ -37,7 +37,7 @@ print(
 |_|  \___/|___/___/\___\___/|_|  \__,_|
                                        
 
-Fosscord Injector v0.0.1 by mugman
+Fosscord Injector v0.5 by mugman
 
 {"[Dry Run]" if DRY_RUN else ''}
 """

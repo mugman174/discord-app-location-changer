@@ -8,7 +8,7 @@ Inject Fosscord into your Discord client :)
 |  _| (_) \__ \__ \ (_| (_) | | | (_| |
 |_|  \___/|___/___/\___\___/|_|  \__,_|
 
-Fosscord Injector v0.0.1 by mugman
+Fosscord Injector v0.5 by mugman
 ```
 # Usage
 - Install Python 3
