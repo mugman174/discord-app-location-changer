@@ -21,6 +21,7 @@ import sys
 import os
 import json
 import readline
+import re
 
 DRY_RUN = bool(os.environ.get("DRY_RUN", False))
 ENDPOINT_URL = os.environ.get("FOSSCORD_ENDPOINT", None)
@@ -98,6 +99,23 @@ if not DRY_RUN:
 	print("Writing Files...")
 	with open("settings.json", "w") as settings_file:
 		json.dump(settings, settings_file)
-		print(f"Injected! Please restart your Discord client ({version}), and enjoy!")
+
+	version_reg = re.compile("\d\.\d\.[0-9]+")
+	ver_search = version_reg.search(' '.join(os.listdir()))
+	confirm = input("[Confirmation] Fosscord instances do not work with erlpack. Disable erlpack [y/n]? ")
+	if not ver_search or "y" not in confirm:
+		print("You will need to disable erlpack manually from your Discord client for this to work.")
+	else:
+		print("Disabling erlpack...")
+		ver = ver_search[0]
+		dir = os.path.join(ver, "modules/discord_erlpack")
+		os.chdir(dir)
+		manifest_json = {"files":["index.js","manifest.json"]}
+		with open("manifest.json", "w") as manifest_file:
+			json.dump(manifest_json, manifest_file)
+		with open("index.js", "w") as erlpack:
+			erlpack.write('module.exports = {e.pack: (e) => e}')
+	print(f"Injected! Please restart your Discord client ({version}), and enjoy!")
+
 else:
 	print(f"Dry Run Complete. Settings: {settings}")
