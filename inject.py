@@ -20,7 +20,7 @@
 import sys
 import os
 import json
-
+import readline
 
 DRY_RUN = bool(os.environ.get("DRY_RUN", False))
 ENDPOINT_URL = os.environ.get("FOSSCORD_ENDPOINT", None)
@@ -29,11 +29,12 @@ API_VERSION = os.environ.get("FOSSCORD_API_VER", "v9")
 
 print(
 	f"""
- _____								 _
-|  ___|__  ___ ___	___ ___	 _ __ __| |
+ _____                               _ 
+|  ___|__  ___ ___  ___ ___  _ __ __| |
 | |_ / _ \/ __/ __|/ __/ _ \| '__/ _` |
 |  _| (_) \__ \__ \ (_| (_) | | | (_| |
-|_|	 \___/|___/___/\___\___/|_|	 \__,_|
+|_|  \___/|___/___/\___\___/|_|  \__,_|
+                                       
 
 Fosscord Injector v0.0.1 by mugman
 
@@ -49,7 +50,7 @@ https = HTTPS_SUPPORT or input(
 	"Does the instance support HTTPS? (Does it have a valid HTTP cert?) [yes,no]: "
 )
 https = "https" if (https == "yes") else "http"
-print("1 - Discord Stable\n2 - Discord PTB\n3 - Discord Canary\n4. Discord Development")
+print("1 - Discord Stable\n2 - Discord PTB\n3 - Discord Canary\n4 - Discord Development")
 ver_in = int(input("Choose your version [1,2,3,4]: "))
 
 
