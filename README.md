@@ -33,7 +33,12 @@ Fosscord Injector v0.5 by mugman
     Choose your version [1,2,3,4]: 
     ```
     Choose your Discord Version. If you do not know, you can find out how to get it [here](https://support.discord.com/hc/en-us/articles/360052735334-How-do-I-find-my-client-info).
-4. Complete!
+4. Erlpack
+	```
+	[Confirmation] Fosscord instances do not work with erlpack. Disable erlpack [y/n]?
+	```
+	Unless you have a reason for keeping erlpack support, just put `yes`.
+6. Complete!
     You can now restart your Discord client and it'll use Fosscord instead of Discord. Enjoy!
     For any problems, head to [Troubleshooting](#troubleshooting).
 
