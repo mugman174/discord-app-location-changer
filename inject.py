@@ -101,14 +101,14 @@ if not DRY_RUN:
 	print("Writing Files...")
 	with open("settings.json", "w") as settings_file:
 		json.dump(settings, settings_file)
-
+	print("Some Fosscord instances do not have '@yukikaze-bot/erlpack' installed.\nIf you know the instance you are using has erlpack, you can safely enter 'no'.\nOtherwise, you should probably enter 'y'.")
 	version_reg = re.compile("\d\.\d\.[0-9]+")
 	ver_search = version_reg.search(" ".join(os.listdir()))
 	confirm = input(
-		"[Confirmation] Fosscord instances do not work with erlpack. Disable erlpack [y/n]? "
+		"[Confirmation] Disable erlpack [y/n]? "
 	)
 	if not ver_search or "y" not in confirm:
-		print(
+		if not ver_search: print(
 			"You will need to disable erlpack manually from your Discord client for this to work."
 		)
 	else:
