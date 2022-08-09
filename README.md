@@ -29,7 +29,7 @@ Fosscord Injector v0.5 by mugman
     1 - Discord Stable
     2 - Discord PTB
     3 - Discord Canary
-    4. Discord Development
+    4 - Discord Development
     Choose your version [1,2,3,4]: 
     ```
     Choose your Discord Version. If you do not know, you can find out how to get it [here](https://support.discord.com/hc/en-us/articles/360052735334-How-do-I-find-my-client-info).
