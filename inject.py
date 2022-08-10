@@ -20,7 +20,6 @@
 import sys
 import os
 import json
-import readline
 import re
 
 DRY_RUN = bool(os.environ.get("DRY_RUN", False))
