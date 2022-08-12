@@ -1,7 +1,7 @@
 """
 	The Fosscord Injector injects json into a Discord client's settings file,
 	so it may connect to a Fosscord instance.
-	Copyright (C) 2021 mugman174
+	Copyright (C) 2022 mugman174
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ print(
 |_|  \___/|___/___/\___\___/|_|  \__,_|
                                        
 
-Fosscord Injector v0.5 by mugman
+Fosscord Injector v1 by mugman
 
 {"[Dry Run]" if DRY_RUN else ''}
 """
@@ -84,8 +84,12 @@ except FileNotFoundError:
 	)
 
 print("Reading from current settings file...")
-with open("settings.json") as settings_file:
-	settings = json.load(settings_file)
+try:
+    with open("settings.json") as settings_file:
+	    settings = json.load(settings_file)
+except FileNotFoundError:
+    print("No settings file found. Continuing...")
+    settings = {}
 
 inject_json = {
 	"API_ENDPOINT": f"{https}://{end_url}/api/{API_VERSION}",
