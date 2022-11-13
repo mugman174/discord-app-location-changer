@@ -29,12 +29,12 @@ API_VERSION = os.environ.get("FOSSCORD_API_VER", "v9")
 
 print(
 	f"""
- _____                               _ 
+ _____                               _
 |  ___|__  ___ ___  ___ ___  _ __ __| |
 | |_ / _ \/ __/ __|/ __/ _ \| '__/ _` |
 |  _| (_) \__ \__ \ (_| (_) | | | (_| |
 |_|  \___/|___/___/\___\___/|_|  \__,_|
-                                       
+
 
 Fosscord Injector v1 by mugman
 
@@ -94,8 +94,8 @@ except FileNotFoundError:
 inject_json = {
 	"API_ENDPOINT": f"{https}://{end_url}/api/{API_VERSION}",
 	"WEBAPP_ENDPOINT": f"{https}://{end_url}",
-	"UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod",
-	"NEW_UPDATE_ENDPOINT": "https://updates.goosemod.com/goosemod/",
+	"UPDATE_ENDPOINT": "https://discord.com/api",
+	"NEW_UPDATE_ENDPOINT": "https://discord.com/api",
 }
 
 settings.update(inject_json)
