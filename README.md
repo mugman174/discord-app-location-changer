@@ -23,7 +23,7 @@ Fosscord Injector v0.5 by mugman
 	```
 	Does the instance support HTTPS? (Does it have a valid HTTP cert?) [yes,no]: 
 	```
-	If the Fosscord Instance port is 443 (and the browser shows a secure connection), then enter yes. Otherwise, enter no.
+	If the Fosscord Instance port is 443 (and the browser shows a secure connection), then type yes. Otherwise, type no.
 3. Discord Version
 	```
     1 - Discord Stable
@@ -32,16 +32,16 @@ Fosscord Injector v0.5 by mugman
     4 - Discord Development
     Choose your version [1,2,3,4]: 
     ```
-    Choose your Discord Version. If you do not know, you can find out how to get it [here](https://support.discord.com/hc/en-us/articles/360052735334-How-do-I-find-my-client-info).
+    Choose your Discord Version. If you need to know, you can find out how to get it [here](https://support.discord.com/hc/en-us/articles/360052735334-How-do-I-find-my-client-info).
 4. Erlpack
 	```
 	[Confirmation] Disable erlpack [y/n]?
 	```
-	If the Fosscord instance you are using has erlpack installed, you can enter `n`. Otherwise, you can safely enter `y`.
+	If the Fosscord instance you are using has erlpack installed, you can enter `n`. Otherwise, you can safely enter `y'.
 6. Complete!
-    You can now restart your Discord client and it'll use Fosscord instead of Discord. Enjoy!
+    You can now restart your Discord client, and it'll use Fosscord instead of Discord. Enjoy!
     For any problems, head to [Troubleshooting](#troubleshooting).
 
 # Troubleshooting
 
-Create an issue on this Github repo or ping mugman in the Fosscord server for any issues. Please redact any personal information if posting logs or errors.
+Create an issue on this GitHub repo or ping mugman in the Fosscord server for any problems. Please redact any personal information if posting logs or errors.
