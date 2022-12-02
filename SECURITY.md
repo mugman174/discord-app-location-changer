@@ -10,4 +10,4 @@ List of versions that are supported or not supported.
 
 ## Reporting a Vulnerability
 
-Join the Fosscord server on [Discord](https://discord.gg/ZrnGQP6p3d) and ping/DM `mugman#5453` with any and all information you have on any vulnerabilities.
+Join the Fosscord server on [Discord](https://discord.gg/ZrnGQP6p3d) and ping/DM `mugman#0043` with any and all information you have on any vulnerabilities.
