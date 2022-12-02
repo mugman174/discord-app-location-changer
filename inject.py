@@ -17,6 +17,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+
 import sys
 import os
 import json
@@ -98,7 +99,7 @@ inject_json = {
 	"NEW_UPDATE_ENDPOINT": "https://discord.com/api",
 }
 
-settings.update(inject_json)
+settings |= inject_json
 
 if not DRY_RUN:
 	print("Writing Files...")
@@ -110,11 +111,11 @@ if not DRY_RUN:
 	confirm = input(
 		"[Confirmation] Disable erlpack [y/n]? "
 	)
-	if not ver_search or "y" not in confirm:
+	if not ver_search:
 		if not ver_search: print(
 			"You will need to disable erlpack manually from your Discord client for this to work."
 		)
-	else:
+	elif "y" in confirm:
 		print("Disabling erlpack...")
 		ver = ver_search[0]
 		dir = os.path.join(ver, "modules/discord_erlpack")
